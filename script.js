@@ -80,6 +80,47 @@ function xpNecessaria(nivel) {
 
 }
 
+function calcularXpTotal() {
+
+    const nivel = Number(document.getElementById("nivelXP").value);
+    const xpAtual = Number(document.getElementById("xpNivel").value);
+
+    if (
+        isNaN(nivel) ||
+        nivel < 1 ||
+        nivel > 200
+    ) {
+        alert("Informe um nível válido.");
+        return;
+    }
+
+    if (
+        isNaN(xpAtual) ||
+        xpAtual < 0 ||
+        xpAtual > xpNecessaria(nivel)
+    ) {
+        alert(`O XP do nível deve ficar entre 0 e ${xpNecessaria(nivel)}.`);
+        return;
+    }
+
+    let xpTotal = xpAtual;
+
+    for (let i = 1; i < nivel; i++) {
+        xpTotal += xpNecessaria(i);
+    }
+
+    document.getElementById("resultado").innerHTML = `
+        <h3>Resultado</h3>
+
+        <p><strong>Nível:</strong> ${nivel}</p>
+
+        <p><strong>XP Atual:</strong> ${xpAtual} / ${xpNecessaria(nivel)}</p>
+
+        <p><strong>XP Total:</strong> ${xpTotal}</p>
+    `;
+
+}
+
 function calcularNivel() {
 
     let xp = Number(document.getElementById("xpTotal").value);
@@ -115,8 +156,8 @@ function calcularNivel() {
         </p>
 
         <p>
-            <strong>Faltam:</strong>
-            ${xpNecessaria(nivel) - xp} XP
+            <strong>Faltam 
+            ${xpNecessaria(nivel) - xp} XP para o próximo nível.</strong>
         </p>
 
     `;
@@ -264,19 +305,14 @@ function calcularAlcance(nivel, vigilante) {
 
 function calcularResistencia(nivel) {
 
-    if (nivel <= 20) return "Chumbo";
-    if (nivel <= 40) return "Bronze";
-    if (nivel <= 60) return "Ferro";
-    if (nivel <= 80) return "Aço";
-    if (nivel <= 100) return "Prata";
-    if (nivel <= 125) return "Ouro";
-    if (nivel <= 150) return "Platina";
-    if (nivel <= 200) return "Titânio";
-    if (nivel <= 250) return "Ametista";
-    if (nivel <= 300) return "Esmeralda";
-    if (nivel <= 350) return "Rubi";
-    if (nivel <= 400) return "Tungstênio";
-    if (nivel <= 450) return "Iridium";
+    if (nivel <= 20) return "Bronze";
+    if (nivel <= 40) return "Ferro";
+    if (nivel <= 60) return "Prata";
+    if (nivel <= 80) return "Ouro";
+    if (nivel <= 100) return "Platina";
+    if (nivel <= 120) return "Titânio";
+    if (nivel <= 140) return "Tungstênio";
+    if (nivel <= 170) return "Iridium";
 
     return "Diamante";
 

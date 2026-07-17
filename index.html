@@ -10,7 +10,7 @@
 <body>
     <header>
         <h1>𝕺𝐥𝐲𝐦𝐩𝐮𝐬</h1>
-        <p>Calculadora de XP e Status</p>
+        <p>made by Ecos do Olimpo</p>
     </header>
     <main>
         <section class="card">
@@ -22,11 +22,33 @@
                         type="number"
                         id="xpTotal"
                         min="0"
-                        placeholder="Ex.: 35600"
-                        required>
+                        placeholder="Ex.: 35600">
                 </div>
                 <button type="submit">
-                    Calcular
+                    Calcular Nível
+                </button>
+            </form>
+            <br>
+            <form onsubmit="event.preventDefault(); calcularXpTotal();">
+                <div class="form-group">
+                    <label for="nivelXP">Nível</label>
+                    <input
+                        type="number"
+                        id="nivelXP"
+                        min="1"
+                        max="200"
+                        placeholder="Ex.: 35">
+                </div>
+                <div class="form-group">
+                    <label for="xpNivel">XP Atual no Nível</label>
+                    <input
+                        type="number"
+                        id="xpNivel"
+                        min="0"
+                        placeholder="Ex.: 750">
+                </div>
+                <button type="submit">
+                    Calcular XP Total
                 </button>
             </form>
             <article id="resultado"></article>
